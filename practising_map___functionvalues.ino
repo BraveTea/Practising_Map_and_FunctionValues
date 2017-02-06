@@ -1,10 +1,10 @@
 int ledArr[] = {13, 12, 11, 8, 7, 5};
-int sensorPin = A0;
+int lightPin = A0;
 
 void setup()
 {
   Serial.begin(9600);
-  pinMode(sensorPin, INPUT);
+  pinMode(lightPin, INPUT);
   for (int i = 0; i < 6; i++)
   {
     pinMode(ledArr[i], OUTPUT);
@@ -13,9 +13,7 @@ void setup()
 
 void loop()
 {
-  sensValPrintPercent(sensorPin, 500);
-  
-  
+  sensValPrintPercent(lightPin, 500);
 }
 
 void testsLeds()
@@ -26,10 +24,11 @@ void testsLeds()
   }
 }
 
-void sensValPrintPercent(int sensor, int beat)
+void sensValPrintPercent(int sensorPin, int beat)
 {
   int val;
   int percent;
+  int sensor;
   val = analogRead(sensorPin);
   percent = map(val, 200, 950, 0, 100);
   sensor = analogRead(sensorPin);
@@ -37,4 +36,3 @@ void sensValPrintPercent(int sensor, int beat)
   Serial.println("%");
   delay(beat);
 }
-
